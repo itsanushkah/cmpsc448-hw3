@@ -45,6 +45,8 @@ def main():
         if prompt.startswith("/len"):
             args.length = int(prompt.split()[1]); print(f"length = {args.length}"); continue
 
+        if not any(c.isupper() for c in chars):  # e.g. Bollywood lyrics are all lowercase
+            prompt = prompt.lower()
         unknown = sorted({c for c in prompt if c not in stoi})
         if unknown:
             print(f"(skipping characters not in training vocab: {unknown})")
